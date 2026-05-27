@@ -1,8 +1,37 @@
-# React + Vite
+﻿# Frontend Despacho
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación frontend desarrollada con React + Vite para el sistema de despacho de Innovatech Chile.
 
-Currently, two official plugins are available:
+## Tecnologías
+- React + Vite
+- Nginx (producción)
+- Docker (multi-stage build)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requisitos
+- Docker Desktop instalado
+- Node.js 20+
+
+## Cómo ejecutar localmente
+
+### Con Docker
+`ash
+docker build -t frontend-despacho .
+docker run -p 80:80 frontend-despacho
+`
+Acceder en: http://localhost
+
+### Con docker-compose
+`ash
+docker-compose up
+`
+
+## Pipeline CI/CD
+El pipeline se activa automáticamente con cada push a la rama deploy:
+1. Construye la imagen Docker
+2. Publica en Docker Hub
+3. Despliega en EC2 (IP: 3.90.105.128)
+
+## Estructura del proyecto
+- src/ - Código fuente React
+- Dockerfile - Configuración Docker multi-stage
+- .github/workflows/deploy.yml - Pipeline CI/CD
